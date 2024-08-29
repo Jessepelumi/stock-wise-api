@@ -2,16 +2,41 @@
 org: jeolad
 # "service" is the name of this project. This will also be added to your AWS resource names.
 service: stock-wise-api
+useDotenv: true
 
 provider:
   name: aws
   runtime: nodejs20.x
+  region: us-east-1
+  environment:
+    DATABASE_URL: ${env:DATABASE_URL}
+  iam:
+    role:
+      name: ssm-role
+      statements:
+        - Effect: 'Allow'
+          Resource: '*'
+          Action:
+            - "ssm:GetParameter"
+            - "ssm:GetParameters"
+            - "ssm:GetParametersByPath"
+            - "ssm:GetParameterHistory"
+            - "ssm:DescribeParameters"
 
 functions:
   api:
-    handler: handler.handler
+    handler: src/index.handler
     events:
       - httpApi: "*"
 
+custom:
+  dotenv:
+    exclude:
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
+      - AWS_SESSION_TOKEN
+      - DATABASE_URL
+
 plugins:
   - serverless-offline
+  - serverless-dotenv-plugin
