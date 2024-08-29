@@ -2,17 +2,26 @@
   "name": "stock-wise-api",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "scripts": {
-    "dev": "serverless offline --stage dev"
+    "dev": "serverless offline --stage dev",
+    "deploy": "serverless deploy --stage prod --region us-east-2",
+    "remove": "serverless remove --stage prod --region us-east-2",
+    "generate": "drizzle-kit generate",
+    "migrate": "tsx src/cli/migrator.js"
   },
   "dependencies": {
+    "@aws-sdk/client-ssm": "^3.637.0",
     "@neondatabase/serverless": "^0.9.4",
     "drizzle-orm": "^0.33.0",
     "express": "^4.19.2",
     "serverless-http": "^3.2.0"
   },
   "devDependencies": {
+    "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.1",
-    "serverless-offline": "^13.7.0"
+    "serverless-dotenv-plugin": "^6.0.0",
+    "serverless-offline": "^13.7.0",
+    "tsx": "^4.19.0"
   }
 }
