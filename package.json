@@ -4,7 +4,7 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "dev": "serverless offline --stage dev",
+    "dev": "nodemon --exec 'serverless offline --stage dev'",
     "deploy": "serverless deploy --stage prod --region us-east-2",
     "remove": "serverless remove --stage prod --region us-east-2",
     "generate": "drizzle-kit generate",
@@ -20,6 +20,7 @@
   "devDependencies": {
     "dotenv": "^16.4.5",
     "drizzle-kit": "^0.24.1",
+    "nodemon": "^3.1.4",
     "serverless-dotenv-plugin": "^6.0.0",
     "serverless-offline": "^13.7.0",
     "tsx": "^4.19.0"
