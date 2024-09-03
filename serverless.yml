@@ -26,10 +26,15 @@ provider:
 functions:
   api:
     handler: src/index.handler
+    timeout: 300
     events:
       - httpApi: "*"
 
 custom:
+  serverless-offline:
+    httpPort: 3000
+    lambdaPort: 3002
+    timeout: 300
   dotenv:
     exclude:
       - AWS_ACCESS_KEY_ID
