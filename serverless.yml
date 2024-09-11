@@ -9,13 +9,14 @@ provider:
   runtime: nodejs20.x
   region: us-east-1
   environment:
-    DATABASE_URL: ${env:DATABASE_URL}
+    DEBUG: ${env:DEBUG, 0}
+    STAGE: ${env:STAGE, "prod"}
   iam:
     role:
-      name: ssm-role
+      name: ssm-role-${env:STAGE, "prod"}
       statements:
-        - Effect: 'Allow'
-          Resource: '*'
+        - Effect: "Allow"
+          Resource: "*"
           Action:
             - "ssm:GetParameter"
             - "ssm:GetParameters"
