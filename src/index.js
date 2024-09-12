@@ -116,10 +116,6 @@ app.use((req, res, next) => {
   return res.status(404).json({
     error: "Not Found",
   });
-
-  // console.log(`Content-Length: ${req.headers["content-length"]}`);
-  // req.on("data", (chunk) => console.log(`Received chunk: ${chunk.length}`));
-  // next();
 });
 
 export const handler = serverless(app);
