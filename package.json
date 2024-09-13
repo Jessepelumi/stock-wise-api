@@ -6,6 +6,8 @@
   "scripts": {
     "dev": "nodemon --exec 'serverless offline --stage dev'",
     "deploy": "serverless deploy --stage prod --region us-east-2",
+    "deploy-dev-stage": "serverless deploy --stage dev --region us-east-2",
+    "info-dev-stage": "serverless info --stage dev --region us-east-2",
     "remove": "serverless remove --stage prod --region us-east-2",
     "generate": "drizzle-kit generate",
     "migrate": "tsx src/cli/migrator.js"
