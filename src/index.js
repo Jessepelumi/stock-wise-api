@@ -20,7 +20,7 @@ app.get("/", async (req, res, next) => {
 
 app.get("/leads", async (req, res, next) => {
   try {
-    const result = await crud.listLeads();
+    const result = await crud.getLeads();
 
     if (result) {
       return res.status(200).json({
