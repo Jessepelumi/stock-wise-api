@@ -35,7 +35,7 @@ custom:
   serverless-offline:
     httpPort: 3000
     lambdaPort: 3002
-    timeout: 300
+    # timeout: 300
   dotenv:
     exclude:
       - AWS_ACCESS_KEY_ID
