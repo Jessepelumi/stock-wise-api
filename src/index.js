@@ -9,7 +9,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/", async (req, res, next) => {
+app.get("/api/", async (req, res, next) => {
   const sql = await getDbClient();
   const [results] = await sql`select now();`;
   return res.status(200).json({
@@ -18,7 +18,7 @@ app.get("/", async (req, res, next) => {
   });
 });
 
-app.get("/leads", async (req, res, next) => {
+app.get("/api/leads", async (req, res, next) => {
   try {
     const result = await crud.listLeads();
 
@@ -40,7 +40,7 @@ app.get("/leads", async (req, res, next) => {
   }
 });
 
-app.get("/leads/:id", async (req, res, next) => {
+app.get("/api/leads/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const result = await crud.getLead(id);
@@ -63,7 +63,7 @@ app.get("/leads/:id", async (req, res, next) => {
   }
 });
 
-app.post("/leads", async (req, res, next) => {
+app.post("/api/leads", async (req, res, next) => {
   try {
     const postData = await req.body;
     const { data, hasError, message } = await validators.validateLeads(
@@ -94,7 +94,7 @@ app.post("/leads", async (req, res, next) => {
   }
 });
 
-app.delete("/leads/:id", async (req, res, next) => {
+app.delete("/api/leads/:id", async (req, res, next) => {
   try {
     const { id } = req.params;
     const result = await crud.deleteLead(id);
